@@ -1,0 +1,18 @@
+int maxbit(int n){
+        int l=1;
+        while((1<<l)<=n)
+        l++;
+        return l-1;
+    }
+    int countSetBits(int n)
+    {
+        // Your logic here
+        if(n==0)
+        return 0;
+        int l=maxbit(n);
+        int y=(1<<(l-1))*l;
+        int z=n-(1<<l)+1;
+        int add=n-(1<<l);
+        int ans=y+z+countSetBits(add);
+        return ans;
+    }
