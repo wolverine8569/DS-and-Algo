@@ -1,0 +1,16 @@
+int trappingWater(int arr[], int n){
+        // Code here
+        int larr[n],rarr[n];
+        larr[0]=arr[0];
+        rarr[n-1]=arr[n-1];
+        for(int i=1;i<n;i++)
+        larr[i]=max(larr[i-1],arr[i]);
+        for(int i=n-2;i>=0;i--)
+        rarr[i]=max(rarr[i+1],arr[i]);
+        int ans=0;
+        for(int i=1;i<n-1;i++)
+        {
+            ans=ans+min(rarr[i],larr[i])-arr[i];
+        }
+        return ans;
+    }
