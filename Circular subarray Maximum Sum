@@ -1,0 +1,31 @@
+int kd(int arr[],int num){
+        int sum1=0,ans=INT_MIN;
+        for(int i=0;i<num;i++){
+            sum1+=arr[i];
+            if(sum1<0)
+            sum1=0;
+            ans=max(ans,sum1);
+        }
+        return ans;
+    }
+    int circularSubarraySum(int arr[], int num){
+        int wrap,nonwrap,tt=0;
+        bool l=false;
+        for(int i=0;i<num;i++)
+        {
+            if(arr[i]>=0)
+            l=true;
+        }
+        if(!l){
+        int s=*max_element(arr,arr+num);
+            return s;
+        }
+        wrap=kd(arr,num);
+        for(int i=0;i<num;i++){
+            tt+=arr[i];
+            arr[i]=-arr[i];
+        }
+        nonwrap=tt+kd(arr,num);
+        return max(wrap,nonwrap);
+        // your code here
+    }
