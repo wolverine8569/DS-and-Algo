@@ -1,0 +1,84 @@
+// Union
+//for intersection go to down
+vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+        //Your code here
+        //return vector with correct order of elements
+        vector<int>v;
+        int i=0,j=0;
+        while(i<n && j<m){
+            if(arr1[i]==arr2[j])
+                {
+                    if(v.size()==0)
+                    v.push_back(arr1[i]);
+                    else
+                    {
+                        if(v[v.size()-1]!=arr1[i])
+                v.push_back(arr1[i]);
+                    }
+                    i++;
+                    j++;
+                }
+            else if(arr1[i]>arr2[j])
+            {
+                if(v.size()==0)
+                    v.push_back(arr2[j]);
+                    else
+                    {
+                        if(v[v.size()-1]!=arr2[j])
+                v.push_back(arr2[j]);
+                    }
+                j++;
+            }
+            else{
+                if(v.size()==0)
+                    v.push_back(arr1[i]);
+                    else
+                    {
+                        if(v[v.size()-1]!=arr1[i])
+                v.push_back(arr1[i]);
+                    }
+                i++;
+            }
+        }
+        while(i<n){
+            if(v.size()==0)
+                    v.push_back(arr1[i]);
+                    else
+                    {
+                        if(v[v.size()-1]!=arr1[i])
+                v.push_back(arr1[i]);
+                    }
+            i++;
+        }
+        while(j<m){
+            if(v.size()==0)
+                    v.push_back(arr2[j]);
+                    else
+                    {
+                        if(v[v.size()-1]!=arr2[j])
+                v.push_back(arr2[j]);
+                    }
+            j++;
+        }
+        return v;
+    }
+    vector<int> Solution::intersect(const vector<int> &A, const vector<int> &B) {
+    vector<int>v;
+    int i=0,j=0;
+    while(i<size(A) && j<size(B)){
+        if(A[i]==B[j])
+        {
+            v.push_back(A[i]);
+            i++;
+            j++;
+        }
+        else if(A[i]>B[j])
+        {
+            j++;
+        }
+        else
+        i++;
+    }
+    return v;
+}
