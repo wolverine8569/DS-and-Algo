@@ -1,0 +1,22 @@
+int minJumps(int arr[], int n){
+        // Your code here
+        if(n<2)
+        return 0;
+        if(arr[0]==0)
+        return -1;
+        int maxlimitreach=arr[0],limit=arr[0],jump=1;
+        for(int i=1;i<n;i++){
+            if(i==n-1)
+            return jump;
+            maxlimitreach=max(maxlimitreach,i+arr[i]);
+            limit--;
+            if(limit==0)
+            {
+                jump++;
+                if(i>=maxlimitreach)
+                return -1;
+                limit=maxlimitreach-i;
+            }
+        }
+        return -1;
+    }
