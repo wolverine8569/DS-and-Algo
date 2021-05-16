@@ -1,0 +1,23 @@
+void nextPermutation(vector<int>& nums) {
+        int n=nums.size(),ind=0;
+        bool p=false;
+        for(int i=n-1;i>=1;i--){
+            if(nums[i]>nums[i-1])
+            {
+                ind=i-1;
+                p=true;
+                break;
+            }
+        }
+        for(int i=n-1;i>=0;i--){
+            if(nums[i]>nums[ind])
+            {
+                swap(nums[i],nums[ind]);
+                break;
+            }
+        }
+        if(p)
+        reverse(nums.begin()+ind+1,nums.end());
+        else
+            reverse(nums.begin(),nums.end());
+    }
