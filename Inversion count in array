@@ -1,0 +1,43 @@
+// we have to found sum of all pairs i,j such that A[i]>A[j]
+ long long merge(long long arr[],long long start,long long mid,long long end){
+    long long count=0;
+    long long n1=mid-start+1;
+    long long n2=end-mid;
+    long long arr1[n1],arr2[n2];
+    for(long long i=0;i<n1;i++){
+        arr1[i]=arr[i+start];
+    }
+    for(long long i=0;i<n2;i++){
+        arr2[i]=arr[i+mid+1];
+    }
+    long long i=0,j=0,k=start;
+    while(i<n1 && j<n2){
+        if(arr1[i]>arr2[j]){
+            count+=(n1-i);
+            arr[k++]=arr2[j++];
+        }
+        else{
+            arr[k++]=arr1[i++];
+        }
+    }
+    while(i<n1){
+        arr[k++]=arr1[i++];
+    }
+    while(j<n2)
+    arr[k++]=arr2[j++];
+    return count;
+}
+long long mergeSort(long long arr[],long long start,long long end){
+    long long res=0;
+    if(start<end){
+    long long mid=start+((end-start)/2);
+    res+=mergeSort(arr,start,mid);
+    res+=mergeSort(arr,mid+1,end);
+    res+=merge(arr,start,mid,end);
+    }
+    return res;
+}
+long long int inversionCount(long long arr[], long long N)
+{
+    return mergeSort(arr,0,N-1);
+}
