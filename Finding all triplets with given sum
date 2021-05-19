@@ -1,0 +1,44 @@
+vector<vector<int>> threeSum(vector<int>& nums) {
+        int n=nums.size();
+       sort(nums.begin(),nums.end());
+        vector<vector<int>>vf;
+        int prev=INT_MIN;
+        for(int i=0;i<n;i++){
+            int target=nums[i];
+            if(target==prev){
+                continue;
+            }
+            prev=target;
+            int preva=INT_MIN,prevb=INT_MAX;
+            int j=i+1,k=n-1;
+            while(j<k){
+                if(nums[j]==preva)
+                {
+                    j++;
+                    continue;
+                }
+                if(nums[k]==prevb)
+                {
+                    k--;
+                    continue;
+                }
+                vector<int>v;
+                if((nums[k]+nums[j]+target)==0)
+                {
+                    v.push_back(nums[i]);
+                    v.push_back(nums[j]);
+                    v.push_back(nums[k]);
+                    preva=nums[j];
+                    prevb=nums[k];
+                    j++;k--;
+                }
+                else if((nums[k]+nums[j]+target)>0)
+                    k--;
+                else
+                    j++;
+                if(v.size()>0)
+                    vf.push_back(v);
+            }
+        }
+    return vf;
+    }
