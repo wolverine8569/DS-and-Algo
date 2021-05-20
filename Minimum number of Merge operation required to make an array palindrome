@@ -1,0 +1,25 @@
+int merge(vector<int> ar) {
+    //Write your code here
+    int n=ar.size();
+    int i=0,j=n-1;
+    int count=0;
+    while(i<=j){
+        if(ar[i]==ar[j])
+        {
+            i++;j--;
+        }
+        else if(ar[i]>ar[j])
+        {
+            ar[j-1]=ar[j]+ar[j-1];
+            j--;
+            count++;
+        }
+        else{
+            ar[i+1]=ar[i]+ar[i+1];
+            i++;
+            count++;
+        }
+    }
+
+    return count;
+}
